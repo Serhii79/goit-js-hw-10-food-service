@@ -1,21 +1,24 @@
 const refs = {
-    input: document.querySelector('#theme-switch-toggle')
-}
+    body: document.querySelector('body')
+};
+console.log(refs.body);
 
-const savedMessage = localStorage.getItem('position-flag');
+const savedTheme = localStorage.getItem('variable-theme');
 
 const returnLocalStorage = () => {
-    if (savedMessage) {
-        refs.input.checked = savedMessage;
-        console.log(refs.input.checked);
+    if (savedTheme) {
+        refs.body.className = savedTheme;
+        console.log(refs.body.className);
+    } else {
+        console.log('Hello!');//Тимчасово для перевірки
     };
 };
 
 returnLocalStorage();
 
-refs.input.addEventListener('input', handleInputChecked);
+refs.body.addEventListener('change', handleBodyTheme);
 
-function handleInputChecked() {
-    const message = refs.input.checked;
-    localStorage.setItem('position-flag', message);
+function handleBodyTheme(event) {
+    const variableTheme = refs.body.className;
+    localStorage.setItem('variable-theme', variableTheme);
 }
