@@ -1,24 +1,12 @@
-const Theme = {
+/*const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
 const inputRef = document.querySelector('#theme-switch-toggle');
 const bodyRef = document.querySelector('body');
-// const divRef = document.querySelector('.theme-switch__marker');
 
-// bodyRef.classList.add(Theme.LIGHT);
-// if (bodyRef.classList.contains(Theme.LIGHT) = true) {
-//     divRef.checked = true;
-// }
 const toggleBackground = () => {
-    // if
-    //     (bodyRef.classList.contains(Theme.LIGHT) inputRef.checked) {
-        
-    // }
-    // bodyRef.classList.toggle(Theme.DARK);
-    // event.preventDefault();
-
     if (inputRef.getAttribute("checked") !== true) {
         bodyRef.classList.toggle(Theme.DARK);
         bodyRef.classList.toggle(Theme.LIGHT);
@@ -28,4 +16,38 @@ const toggleBackground = () => {
     };
 };
 
-inputRef.addEventListener('change', toggleBackground);
+inputRef.addEventListener('change', toggleBackground);*/
+
+import { loadThemeName, saveThemeName } from './localstorage';
+
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+
+const refs = {
+  bodyRef: document.querySelector('body'),
+  inputRef: document.querySelector('#theme-switch-toggle'),
+};
+
+const savedTheme = loadThemeName() || Theme.LIGHT;
+
+refs.bodyRef.className = savedTheme;
+
+refs.bodyRef.addEventListener('change', handleBodyTheme);
+
+if (savedTheme === Theme.DARK) {
+  refs.inputRef.setAttribute('checked', 'checked');
+}
+
+refs.inputRef.addEventListener('change', toggleBackground);
+
+function handleBodyTheme() {
+  const variableTheme = refs.bodyRef.className;
+  saveThemeName(variableTheme);
+}
+
+function toggleBackground() {
+  refs.bodyRef.classList.toggle(Theme.DARK);
+  refs.bodyRef.classList.toggle(Theme.LIGHT);
+}

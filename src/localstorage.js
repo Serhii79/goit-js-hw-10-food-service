@@ -1,12 +1,10 @@
-const refs = {
+/*const refs = {
     body: document.querySelector('body'),
     label: document.querySelector('.theme-switch__track'),
     div: document.querySelector('.theme-switch__marker')
 };
-// console.log(refs.body);
 
 const savedTheme = localStorage.getItem('variable-theme');
-const savedDiv = localStorage.getItem('position-div');
 
 const returnThemeLocalStorage = () => {
     if (savedTheme) {
@@ -17,29 +15,17 @@ const returnThemeLocalStorage = () => {
     };
 };
 
-const returnDivLocalStorage = () => {
-    if (savedDiv) {
-        refs.div.checked = savedDiv;
-        console.log(refs.div.checked);
-    } else {
-        console.log('Hi!');//Для перевірки
-    };
-};
-
-
 returnThemeLocalStorage();
-returnDivLocalStorage();
 
 refs.body.addEventListener('change', handleBodyTheme);
-refs.div.addEventListener('change', handleDivChecked);
-
 
 function handleBodyTheme() {
     const variableTheme = refs.body.className;
     localStorage.setItem('variable-theme', variableTheme);
-};
+};*/
 
-function handleDivChecked() {
-    const positionDiv = refs.div.checked;
-    localStorage.setItem('position-div', positionDiv);
-};
+const THEME_KEY_NAME = 'variable-theme';
+
+export const loadThemeName = () => localStorage.getItem(THEME_KEY_NAME);
+
+export const saveThemeName = theme => localStorage.setItem(THEME_KEY_NAME, theme);
